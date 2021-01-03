@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: apik8sdevweek 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apik8sdevweek
+  template:
+    metadata:
+      labels:
+        app: apik8sdevweek 
+    spec:
+      containers:
+        - name: apik8sdevweek 
+          image: leohicksteingithubactions.azurecr.io/apik8sdevweek
+          ports:
+          - containerPort: 80
