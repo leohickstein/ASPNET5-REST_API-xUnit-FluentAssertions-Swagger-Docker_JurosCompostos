@@ -31,11 +31,17 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - task: DotNetCoreCLI@2
-        inputs:
-          command: 'test'
-          projects: '**/APIFinancas.Testes.csproj'
-          testRunTitle: 'Testes da API Financeira'
+    - task: UseDotNet@2
+      displayName: Instalar .NET 5
+      inputs:
+        packageType: 'sdk'
+        version: '5.0.100'
+    - task: DotNetCoreCLI@2
+      displayName: Executar Testes
+      inputs:
+        command: 'test'
+        projects: '**/APIFinancas.Testes.csproj'
+        testRunTitle: 'Testes da API Financeira'
   - job: Build
     displayName: Build
     pool:
