@@ -26,6 +26,16 @@ stages:
 - stage: Build
   displayName: Build stage
   jobs:  
+  - job: Tests
+    displayName: Testes da API
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'test'
+          projects: '**/APIFinancas.Testes.csproj'
+          testRunTitle: 'Testes da API Financeira'
   - job: Build
     displayName: Build
     pool:
